@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 230px;
+    min-height: 100vh;
+    background: #333;
+    color: white;
+    padding: 25px 15px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-button {
+    border: none;
+    background: transparent;
+    color: #ddd;
+    padding: 13px 15px;
+    text-align: left;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.menu-button:hover {
+    background: #444;
+    color: white;
+}
+
+.menu-button.active {
+    background: #555;
+    color: white;
+}
+
+
+/* MAIN */
+
+.main {
+    flex: 1;
+    padding: 30px;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.header p {
+    color: #777;
+}
+
+
+/* PAGES */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* WELCOME */
+
+.welcome {
+    background: white;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: #777;
+}
+
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+}
+
+.card h3 {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+/* PAGE HEADER */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-header h2 {
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #777;
+}
+
+
+/* BUTTONS */
+
+.primary-button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    background: #555;
+}
+
+.secondary-button {
+    background: #eee;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 11px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.secondary-button:hover {
+    background: #ddd;
+}
+
+
+/* FORMS */
+
+.form-container {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.form-container h3 {
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #555;
+}
+
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+
+/* SEARCH */
+
+.search-container {
+    margin-bottom: 15px;
+}
+
+.search-container input {
+    width: 350px;
+    max-width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+/* TABLE */
+
+.table-container {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #eee;
+    font-size: 14px;
+}
+
+tr:hover {
+    background: #f8f8f8;
+}
+
+
+/* ACTION BUTTONS */
+
+.edit-button,
+.delete-button,
+.attendance-button {
+    border: none;
+    padding: 7px 11px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.edit-button {
+    background: #eee;
+    color: #333;
+}
+
+.delete-button {
+    background: #ddd;
+    color: #222;
+}
+
+.attendance-button {
+    background: #333;
+    color: white;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    background: #ccc;
+}
+
+.attendance-button:hover {
+    background: #555;
+}
+
+
+/* STATUS */
+
+.status-present {
+    color: #1b5e20;
+    font-weight: bold;
+}
+
+.status-absent {
+    color: #b00020;
+    font-weight: bold;
+}
+
+.status-shortage {
+    color: #b00020;
+    font-weight: bold;
+}
+
+
+/* MESSAGES */
+
+.error-message {
+    color: #b00020;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.empty-message {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    color: #777;
+}
+
+
+/* HIDDEN */
+
+.hidden {
+    display: none;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .main {
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+}

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AttendEase</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                AttendEase
+            </div>
+
+            <div class="menu">
+
+                <button class="menu-button active" onclick="showPage('dashboard', this)">
+                    Dashboard
+                </button>
+
+                <button class="menu-button" onclick="showPage('students', this)">
+                    Students
+                </button>
+
+                <button class="menu-button" onclick="showPage('subjects', this)">
+                    Subjects
+                </button>
+
+                <button class="menu-button" onclick="showPage('sessions', this)">
+                    Sessions
+                </button>
+
+                <button class="menu-button" onclick="showPage('attendance', this)">
+                    Attendance
+                </button>
+
+                <button class="menu-button" onclick="showPage('shortage', this)">
+                    Shortage
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+            <header class="header">
+
+                <div>
+
+                    <h1 id="pageTitle">
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Classroom Attendance Management System
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+
+            <section id="dashboard" class="page active">
+
+                <div class="welcome">
+
+                    <h2>
+                        Welcome to AttendEase
+                    </h2>
+
+                    <p>
+                        Basic ERP-style classroom attendance management.
+                    </p>
+
+                </div>
+
+
+                <div class="cards">
+
+                    <div class="card">
+
+                        <h3>
+                            Students
+                        </h3>
+
+                        <p id="studentCount">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>
+                            Subjects
+                        </h3>
+
+                        <p id="subjectCount">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>
+                            Sessions
+                        </h3>
+
+                        <p id="sessionCount">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>
+                            Attendance Records
+                        </h3>
+
+                        <p id="attendanceCount">
+                            0
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+             STUDENTS
+        ================================================== -->
+
+            <section id="students" class="page">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>
+                            Students
+                        </h2>
+
+                        <p>
+                            Add and manage student information.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" onclick="openStudentForm()">
+
+                        + Add Student
+
+                    </button>
+
+                </div>
+
+
+                <div id="studentForm" class="form-container hidden">
+
+                    <h3 id="studentFormTitle">
+                        Add Student
+                    </h3>
+
+
+                    <input type="hidden" id="studentId">
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Name
+                            </label>
+
+                            <input type="text" id="studentName" placeholder="Enter student name">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Roll Number
+                            </label>
+
+                            <input type="text" id="studentRollNumber" placeholder="Enter roll number">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Email
+                            </label>
+
+                            <input type="email" id="studentEmail" placeholder="Enter email">
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="studentError" class="error-message">
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button class="primary-button" onclick="saveStudent()">
+
+                            Save Student
+
+                        </button>
+
+
+                        <button class="secondary-button" onclick="closeStudentForm()">
+
+                            Cancel
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="search-container">
+
+                    <input type="text" id="studentSearch" placeholder="Search by name or roll number..."
+                        oninput="searchStudents()">
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Name</th>
+
+                                <th>Roll Number</th>
+
+                                <th>Email</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="studentTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+             SUBJECTS
+        ================================================== -->
+
+            <section id="subjects" class="page">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>
+                            Subjects
+                        </h2>
+
+                        <p>
+                            Add and manage subjects.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" onclick="openSubjectForm()">
+
+                        + Add Subject
+
+                    </button>
+
+                </div>
+
+
+                <div id="subjectForm" class="form-container hidden">
+
+                    <h3 id="subjectFormTitle">
+                        Add Subject
+                    </h3>
+
+
+                    <input type="hidden" id="subjectId">
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Subject Name
+                            </label>
+
+                            <input type="text" id="subjectName" placeholder="Enter subject name">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Subject Code
+                            </label>
+
+                            <input type="text" id="subjectCode" placeholder="Enter subject code">
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="subjectError" class="error-message">
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button class="primary-button" onclick="saveSubject()">
+
+                            Save Subject
+
+                        </button>
+
+
+                        <button class="secondary-button" onclick="closeSubjectForm()">
+
+                            Cancel
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="search-container">
+
+                    <input type="text" id="subjectSearch" placeholder="Search by subject name or code..."
+                        oninput="searchSubjects()">
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Subject Name</th>
+
+                                <th>Subject Code</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="subjectTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+             SESSIONS
+        ================================================== -->
+
+            <section id="sessions" class="page">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>
+                            Sessions
+                        </h2>
+
+                        <p>
+                            Create and manage classroom sessions.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" onclick="openSessionForm()">
+
+                        + Create Session
+
+                    </button>
+
+                </div>
+
+
+                <div id="sessionForm" class="form-container hidden">
+
+                    <h3>
+                        Create Session
+                    </h3>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Subject
+                            </label>
+
+                            <select id="sessionSubject">
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Date
+                            </label>
+
+                            <input type="date" id="sessionDate">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Time
+                            </label>
+
+                            <input type="time" id="sessionTime">
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="sessionError" class="error-message">
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button class="primary-button" onclick="saveSession()">
+
+                            Create Session
+
+                        </button>
+
+
+                        <button class="secondary-button" onclick="closeSessionForm()">
+
+                            Cancel
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Subject</th>
+
+                                <th>Date</th>
+
+                                <th>Time</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="sessionTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+             ATTENDANCE
+        ================================================== -->
+
+            <section id="attendance" class="page">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>
+                            Attendance
+                        </h2>
+
+                        <p>
+                            Mark attendance for a classroom session.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-container">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Session
+                            </label>
+
+                            <select id="attendanceSession" onchange="loadSessionAttendance()">
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Student</th>
+
+                                <th>Roll Number</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="attendanceTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+             SHORTAGE
+        ================================================== -->
+
+            <section id="shortage" class="page">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <h2>
+                            Attendance Shortage
+                        </h2>
+
+                        <p>
+                            Students below 75% attendance.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-container">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Subject
+                            </label>
+
+                            <select id="shortageSubject" onchange="loadShortage()">
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Student</th>
+
+                                <th>Roll Number</th>
+
+                                <th>Attendance Records</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="shortageTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="javascript/script.js"></script>
+
+</body>
+
+</html>
